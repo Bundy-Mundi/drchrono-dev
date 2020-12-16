@@ -1,35 +1,15 @@
-import 'react-app-polyfill/ie9';
-import 'react-app-polyfill/ie11';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from "react-router-dom";
-
-import Reducer from './_reducers';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import promiseMiddleware from 'redux-promise';
-import ReduxThunk from 'redux-thunk';
-
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import App from './App';
+import theme from './theme';
 
 ReactDOM.render(
-    <Provider
-        store={createStoreWithMiddleware(
-            Reducer,
-            window.__REDUX_DEVTOOLS_EXTENSION__ &&
-            window.__REDUX_DEVTOOLS_EXTENSION__()
-        )}
-    >
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>
-    , document.getElementById('root'));
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  <ThemeProvider theme={theme}>
+    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+    <CssBaseline />
+    <App />
+  </ThemeProvider>,
+  document.querySelector('#root'),
+);
