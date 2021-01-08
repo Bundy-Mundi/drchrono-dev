@@ -100,7 +100,7 @@ app.get("/auth/drchrono/callback", (req, res) => {
         .then(json => {
             // Store accessToken and refreshToken in the session storage
             const { access_token, refresh_token } = json;
-            console.log(json)
+            // console.log(json)
             if(access_token && refresh_token){
                 req.session.accessToken = access_token;
                 req.session.refreshToken = refresh_token;
